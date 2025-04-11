@@ -1,5 +1,5 @@
 ---
-title: "zouhanze_website"
+title: "Hanze Zou"
 image: "image-2024.jpg"
 about: 
     template: jolla
