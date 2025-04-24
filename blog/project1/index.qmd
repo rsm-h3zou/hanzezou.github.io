@@ -40,7 +40,6 @@ display(desc)
 #### Log Donation Amount by Giving Status
 
 ```{python}
-#| echo: false
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -58,7 +57,6 @@ The violin plot reveals stark differences in the distribution of log-transformed
 
 #### Donation Decision (Raw Counts)
 ```{python}
-#| echo: false
 plt.figure(figsize=(6, 4))
 sns.countplot(x='gave', data=df)
 plt.title('Donation Decision')
@@ -71,7 +69,6 @@ This count plot shows the distribution of donation decisions. A significant majo
 
 #### Treatment Assignment
 ```{python}
-#| echo: false
 plt.figure(figsize=(6, 4))
 sns.countplot(x='treatment', data=df)
 plt.title('Treatment Assignment')
@@ -85,7 +82,6 @@ The bar chart visualizes the allocation of individuals into treatment and contro
 
 #### Distribution of Match Ratios
 ```{python}
-#| echo: false
 plt.figure(figsize=(6, 4))
 sns.countplot(x='ratio', data=df)
 plt.title('Distribution of Match Ratios')
@@ -167,7 +163,6 @@ As an ad hoc test of the randomization mechanism, I provide a series of tests th
 We report mean differences across treatment and control groups for a set of pre-treatment covariates, along with p-values from two-sample *t*-tests. These tests assess whether the randomization achieved balance on observable characteristics at baseline.
 
 ```{python}
-#| echo: false
 
 import pandas as pd
 from scipy.stats import ttest_ind
@@ -206,7 +201,6 @@ display(balance_df)
 To further validate the randomization, we estimate simple OLS regressions of each baseline covariate on the treatment assignment indicator. In each case, the coefficient on the treatment dummy captures the average difference between groups, controlling for sampling variability. None of the estimates are statistically significant at conventional levels, supporting the success of randomization.
 
 ```{python}
-#| echo: false
 import statsmodels.formula.api as smf
 for var in vars_to_test:
     model = smf.ols(f"{var} ~ treatment", data=df).fit()
@@ -265,7 +259,6 @@ gave_control = df[df["treatment"] == 0]["gave"]
 t_stat, p_val = ttest_ind(gave_treat, gave_control)
 print(f"t-test: t = {t_stat:.3f}, p = {p_val:.4f}")
 
-# OLS 回归
 model = smf.ols("gave ~ treatment", data=df).fit()
 print(model.summary().tables[1])
 ```
@@ -279,7 +272,6 @@ This suggests that even a simple message about matched donations can meaningfull
 <!-- _todo: run a probit regression where the outcome variable is whether any charitable donation was made and the explanatory variable is assignment to treatment or control. Confirm that your results replicate Table 3 column 1 in the paper._ -->
 
 ```{python}
-#| echo: false
 import statsmodels.api as sm
 
 df["intercept"] = 1
@@ -303,17 +295,17 @@ Next, I assess the effectiveness of different sizes of matched donations on the 
 
 <!-- _todo: Use a series of t-tests to test whether the size of the match ratio has an effect on whether people donate or not. For example, does the 2:1 match rate lead increase the likelihood that someone donates as compared to the 1:1 match rate? Do your results support the "figures suggest" comment the authors make on page 8?_ -->
 ```{python}
-#| echo: false
+
 df_ratio = df[df["treatment"] == 1]
 
-# 提取不同组 gave
+
 gave_1to1 = df_ratio[df_ratio["ratio"] == 1]["gave"]
 gave_2to1 = df_ratio[df_ratio["ratio2"] == 1]["gave"]
 gave_3to1 = df_ratio[df_ratio["ratio3"] == 1]["gave"]
 
-# 比较 2:1 vs 1:1
+# compare 2:1 vs 1:1
 t21, p21 = ttest_ind(gave_2to1, gave_1to1, equal_var=False)
-# 比较 3:1 vs 1:1
+# compare 3:1 vs 1:1
 t31, p31 = ttest_ind(gave_3to1, gave_1to1, equal_var=False)
 
 ttest_table = pd.DataFrame({
@@ -440,7 +432,7 @@ Further suppose that the true distribution of respondents who do get a charitabl
 <!-- _to do:  Make a plot like those on slide 43 from our first class and explain the plot to the reader. To do this, you will simulate 100,00 draws from the control distribution and 10,000 draws from the treatment distribution. You'll then calculate a vector of 10,000 differences, and then you'll plot the cumulative average of that vector of differences. Comment on whether the cumulative average approaches the true difference in means._ -->
 
 ```{python}
-#| echo: false
+
 
 control_vals = df[df["treatment"] == 0]["amount"].dropna().values
 treat_vals = df[df["treatment"] == 1]["amount"].dropna().values
@@ -481,7 +473,7 @@ _to do: Make 4 histograms like those on slide 44 from our first class at sample 
 -->
 
 ```{python}
-#| echo: false
+
 
 np.random.seed(42)
 
