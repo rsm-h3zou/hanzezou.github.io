@@ -25,6 +25,9 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import warnings
+
+np.random.seed(42)
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=pd.errors.SettingWithCopyWarning)
 
@@ -230,7 +233,7 @@ from scipy.special import gammaln
 def poisson_log_likelihood(beta, X, y):
     beta = np.asarray(beta)
     lin_pred = X @ beta 
-    lambda_ = np.exp(np.clip(lin_pred, -100, 100)) 
+    lambda_ = np.exp(np.clip(lin_pred, -20, 20)) 
     return float(-np.sum(y * np.log(lambda_) - lambda_ - gammaln(y + 1)))
 
 X_raw = blueprinty[["age", "region", "iscustomer"]].copy()
@@ -244,7 +247,7 @@ X_model = X_model.astype(float)
 Y = blueprinty["patents"].values  
 
 
-beta_init = np.random.normal(0, 0.1, size=X_model.shape[1])
+beta_init = np.zeros(X_model.shape[1])
 res = minimize(poisson_log_likelihood, beta_init, args=(X_model, Y), method='BFGS')
 beta_hat = res.x
 
