@@ -230,7 +230,7 @@ from scipy.special import gammaln
 def poisson_log_likelihood(beta, X, y):
     beta = np.asarray(beta)
     lin_pred = X @ beta 
-    lambda_ = np.exp(np.clip(lin_pred, -20, 20)) 
+    lambda_ = np.exp(np.clip(lin_pred, -100, 100)) 
     return float(-np.sum(y * np.log(lambda_) - lambda_ - gammaln(y + 1)))
 
 X_raw = blueprinty[["age", "region", "iscustomer"]].copy()
