@@ -1,7 +1,7 @@
 ---
 title: "Multinomial Logit Model"
 author: "Hanze Zou"
-date: today
+date: April 27, 2025
 callout-appearance: minimal
 ---
 
@@ -219,7 +219,7 @@ X.head(6)
 
 <!-- _todo: Code up the log-likelihood function._ -->
 ```{python}
-#| echo: false
+
 def mnl_log_likelihood(beta, X, y, group_ids):
 
     ll = 0.0
@@ -230,7 +230,7 @@ def mnl_log_likelihood(beta, X, y, group_ids):
         Xg = X[idx]             # 3 × 4
         yg = y[idx]             # 3 × 1
 
-        utilities = Xg @ beta   # 线性效用
+        utilities = Xg @ beta   
         exp_util = np.exp(utilities)
         probs = exp_util / np.sum(exp_util)
 
@@ -323,7 +323,7 @@ We ran the sampler for 11,000 iterations and discarded the first 1,000 as burn-i
 
 
 ```{python}
-#| echo: false
+
 def log_likelihood(beta, X, y, group_ids):
     ll = 0.0
     for gid in np.unique(group_ids):
