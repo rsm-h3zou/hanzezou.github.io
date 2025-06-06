@@ -20,5 +20,8 @@
   "blog/project3/index.qmd": {
     "index.tex": "cfd4cb27",
     "index.html": "2061f75c"
+  },
+  "blog/project4/index.qmd": {
+    "index.html": "646982ad"
   }
 }
