@@ -92,17 +92,16 @@ for i, centroids in enumerate(history):
     ax.set_title(f"Iteration {i+1}")
     ax.legend()
     fig.canvas.draw()
-    frame = np.frombuffer(fig.canvas.tostring_rgb(), dtype='uint8')
-    frame = frame.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+    frame = np.frombuffer(fig.canvas.buffer_rgba(), dtype='uint8')
+    frame = frame.reshape(fig.canvas.get_width_height()[::-1] + (4,))
     frames.append(frame)
     plt.close()
 
-imageio.mimsave("kmeans_animation.gif", frames, fps=2)
-
+imageio.mimsave("file/kmeans_animation.gif", frames, fps=2, loop=1)
 
 ```
 
-![](kmeans_animation.gif)
+![](file/kmeans_animation.gif)
 
 ### 1.2 Visualization Results
 Below is a comparison between the results from our handwritten implementation and scikit-learn’s built-in method (with 
