@@ -9,6 +9,28 @@ about:
       - icon: linkedin
       
 ---
+:::{#main-content}
+
+## Current
+
+ - Student, MS in Business Analytics | UCSD Rady
+
+-----
+
+## Work History
+
+
+ - Ernst & Young [| 2021 - 2024]{.gray}
+
+-----
+
+## Education
+
+ - MS in Business Analytics [| University of California, San Diego -present]{.gray}
+ - BA Auditing [| Nanjing Audit University 2021]{.gray}
+
+:::
+
 
 <!-- 
 This is a Quarto website.
