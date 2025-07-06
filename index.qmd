@@ -1,6 +1,7 @@
 ---
 title: "Hanze Zou"
 image: "image-2024.jpg"
+image-shape: round
 about: 
     template: trestles
     links: 
