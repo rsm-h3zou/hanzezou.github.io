@@ -2,13 +2,18 @@
 title: "Hanze Zou"
 image: "image-2024.jpg"
 about: 
-    template: jolla
+    template: trestles
     links: 
       - icon: envelope
         href: mailto:h3zou@ucsd.edu
       - icon: linkedin
-      
+
+
+format:
+  html:
+    page-layout: full
 ---
+
 :::{#main-content}
 
 ## Current
