@@ -1,0 +1,18 @@
+---
+title: "Project Experience"
+format: html
+---
+
+##  Professional Experience at EY
+
+
+
+
+##  Capstone Project – 340B Drug Demand Forecasting & Anomaly Detection
+*Vertex Pharmaceuticals × UCSD Rady School | Spring 2025*
+
+- Built ZIP3-level forecasting and anomaly detection models to support inventory planning and audit prioritization across Vertex’s 340B market.
+- Cleaned and merged 34K+ shipment and dispense records; engineered lag features, rolling averages, and regional entity metrics.
+- Trained an XGBoost model using rolling-window cross-validation, achieving <10% error in low-variance regions and identifying over-forecasting risks elsewhere.
+- Designed a dual anomaly detection system using z-score and Isolation Forest to flag unusual dispense-demand gaps at regional and national levels.
+- Delivered insights that enabled an estimated $285K in annual savings and informed monthly planning and compliance audits.

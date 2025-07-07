@@ -166,5 +166,12 @@
     "title": "Hanze Zou",
     "section": "",
     "text": "MS in Business Analytics | University of California, San Diego -present\nBA Auditing | Nanjing Audit University 2021"
+  },
+  {
+    "objectID": "experience.html#capstone-project-340b-drug-demand-forecasting-anomaly-detection",
+    "href": "experience.html#capstone-project-340b-drug-demand-forecasting-anomaly-detection",
+    "title": "Project Experience",
+    "section": "Capstone Project – 340B Drug Demand Forecasting & Anomaly Detection",
+    "text": "Capstone Project – 340B Drug Demand Forecasting & Anomaly Detection\nVertex Pharmaceuticals × UCSD Rady School | Spring 2025\n\nBuilt ZIP3-level forecasting and anomaly detection models to support inventory planning and audit prioritization across Vertex’s 340B market.\nCleaned and merged 34K+ shipment and dispense records; engineered lag features, rolling averages, and regional entity metrics.\nTrained an XGBoost model using rolling-window cross-validation, achieving &lt;10% error in low-variance regions and identifying over-forecasting risks elsewhere.\nDesigned a dual anomaly detection system using z-score and Isolation Forest to flag unusual dispense-demand gaps at regional and national levels.\nDelivered insights that enabled an estimated $285K in annual savings and informed monthly planning and compliance audits."
   }
 ]
