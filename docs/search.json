@@ -173,5 +173,19 @@
     "title": "Project Experience",
     "section": "Capstone Project – 340B Drug Demand Forecasting & Anomaly Detection",
     "text": "Capstone Project – 340B Drug Demand Forecasting & Anomaly Detection\nVertex Pharmaceuticals × UCSD Rady School | Spring 2025\n\nBuilt ZIP3-level forecasting and anomaly detection models to support inventory planning and audit prioritization across Vertex’s 340B market.\nCleaned and merged 34K+ shipment and dispense records; engineered lag features, rolling averages, and regional entity metrics.\nTrained an XGBoost model using rolling-window cross-validation, achieving &lt;10% error in low-variance regions and identifying over-forecasting risks elsewhere.\nDesigned a dual anomaly detection system using z-score and Isolation Forest to flag unusual dispense-demand gaps at regional and national levels.\nDelivered insights that enabled an estimated $285K in annual savings and informed monthly planning and compliance audits."
+  },
+  {
+    "objectID": "experience.html",
+    "href": "experience.html",
+    "title": "Project Experience",
+    "section": "",
+    "text": "Junwei Electronics (301458.SZ)\n\nConducted on-site visits to major customers and suppliers to verify sales contract terms, execution status, and gain insights into market trends and business expansion strategies.\nPerformed benchmarking analysis of comparable companies using public data (e.g., gross margin, expense ratios, turnover rates); conducted management interviews to understand variance drivers and industry-specific nuances across product segments; applied analytical review procedures to validate the reasonableness of financial indicators.\nPrepared audit working papers for key areas including long-term assets, revenue, right-of-use assets and lease liabilities, period expenses, non-recurring gains and losses, and related-party transactions; compiled consolidated audit schedules and disclosures for corresponding line items."
+  },
+  {
+    "objectID": "experience.html#professional-experience-at-ey",
+    "href": "experience.html#professional-experience-at-ey",
+    "title": "Project Experience",
+    "section": "",
+    "text": "Junwei Electronics (301458.SZ)\n\nConducted on-site visits to major customers and suppliers to verify sales contract terms, execution status, and gain insights into market trends and business expansion strategies.\nPerformed benchmarking analysis of comparable companies using public data (e.g., gross margin, expense ratios, turnover rates); conducted management interviews to understand variance drivers and industry-specific nuances across product segments; applied analytical review procedures to validate the reasonableness of financial indicators.\nPrepared audit working papers for key areas including long-term assets, revenue, right-of-use assets and lease liabilities, period expenses, non-recurring gains and losses, and related-party transactions; compiled consolidated audit schedules and disclosures for corresponding line items."
   }
 ]

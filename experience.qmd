@@ -5,6 +5,12 @@ format: html
 
 ##  Professional Experience at EY
 
+### IPO Project
+*Junwei Electronics (301458.SZ)*
+
+- Conducted on-site visits to major customers and suppliers to verify sales contract terms, execution status, and gain insights into market trends and business expansion strategies.
+- Performed benchmarking analysis of comparable companies using public data (e.g., gross margin, expense ratios, turnover rates); conducted management interviews to understand variance drivers and industry-specific nuances across product segments; applied analytical review procedures to validate the reasonableness of financial indicators.
+- Prepared audit working papers for key areas including long-term assets, revenue, right-of-use assets and lease liabilities, period expenses, non-recurring gains and losses, and related-party transactions; compiled consolidated audit schedules and disclosures for corresponding line items.
 
 
 
