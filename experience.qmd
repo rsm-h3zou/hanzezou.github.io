@@ -3,53 +3,112 @@ title: "Project Experience"
 format: html
 ---
 
-##  Professional Experience at EY
 
-### IPO Project – Junwei Electronics 钧崴电子
+## Project Experience {.tabset}
 
-::: {.columns}
-::: {.column width="50%"}
+### English
 
-**🔹 English**
+####  Professional Experience at EY
 
-- Conducted on-site visits to major customers and suppliers to verify sales contract terms and execution status.  
-- Benchmarked peer companies’ financial metrics and interviewed Junwei’s management to understand differences.  
-- Prepared audit working papers and disclosures on long-term assets, revenue, leases, etc.
+##### **IPO Audit Project – *Junwei Electronics (301458.SZ) | 2021–2023***
 
-:::
-::: {.column width="50%"}
+**Company Background**: Global top-4 manufacturer of current-sensing precision resistors and a leading domestic supplier of fuses. Key clients include **Foxconn**, **Gree**, **Samsung**, **Xiaomi**, **BYD**, **NIO**, and **Sungrow**. IPO submitted in 2022 and officially listed in January 2025.
 
-**🔹 中文**
+**Key Responsibilities and Achievements**:
 
-- 对主要客户及供应商进行实地走访，确认销售合同条款及履行情况。  
-- 收集可比公司数据，分析财务指标并与钧崴管理层访谈，了解差异与细分业务。  
-- 编写并汇总长期资产、收入、租赁、关联交易等审计底稿和披露材料。
+**1. Customer & Supplier Due Diligence**
 
-:::
-:::
+- Participated in on-site visits to major clients and suppliers including **Foxconn** and **Gree**. Verified contract terms (pricing, credit periods, return policies) and assessed consistency in execution.
+- Investigated revenue recognition timing and AR status across product lines (resistors, fuses), and validated long-term partnerships.
+- Collected industry intelligence on end-user markets (consumer electronics, appliances) and assessed downstream demand volatility and strategic expansion into EV and PV sectors.
 
----
+**2. Benchmark Analysis & Financial Reviews**
 
-## Capstone Project – 340B Drug Forecasting & Anomaly Detection  
-**Vertex Pharmaceuticals × UCSD Rady School**
+- Built financial benchmarking dataset from listed peers (**Fenghua**, Yageo, China Electronics); compared gross margin, expense ratio, and turnover efficiency.
+- Investigated why fuse margins (25%~32%) were below industry average (38%~45%), citing product mix and manufacturing structure.
+- Validated period expense ratio (24%~27%) significantly exceeding peers (14%~17%); traced root causes including high overseas headcount, duplicated functions, and operational inefficiencies.
+- Analyzed inventory and AR turnover trends, adjusted for client portfolio and sales model (30% distributor-based).
+- Applied ratio/trend analysis to test reasonableness of volatile financial indicators (e.g. revenue slowdown, declining core net profit).
 
-::: {.columns}
-::: {.column width="50%"}
+**3. Key Audit Subjects & Disclosures**
 
-**🔹 English**
+- **Revenue**: Tested policy consistency across direct and distributor channels. Conducted detailed cutoff testing (contracts, delivery notes, invoices, receipts).
+- **Leases**: Validated identification, discount rate, amortization and disclosure under new leasing standards.
+- **Expenses**: Examined SG&A details, especially overseas salaries and travel costs, and checked for improper reimbursement or misclassification.
 
-- Built ZIP3-level forecasting and anomaly detection models for Vertex’s 340B market.  
-- Engineered lag features and achieved <10% error in stable regions.  
-- Delivered insights with estimated $285K+ in savings.
+##### **Annual Audit – *Capchem (300037.SZ) | 2021–2023***
 
-:::
-::: {.column width="50%"}
+**Company Background**: Shenzhen Capchem Technology is a leading player in global electronic chemicals and energy materials. Operates 16 subsidiaries and 7 joint ventures globally, covering battery, fluorochemicals, capacitor, and semiconductor sectors.
 
-**🔹 中文**
+**Key Responsibilities and Achievements**:
 
-- 为 Vertex 构建 ZIP3 级别的需求预测与异常检测模型。  
-- 构造时滞特征并在稳定区域中实现 <10% 预测误差。  
-- 提出节约建议，预计每年节省超 28.5 万美元。
+**1. Group Audit & Consolidation**
 
-:::
-:::
+- Audited over 110 key items across domestic and overseas subsidiaries including equity incentives, goodwill, revenue, tax, and construction-in-progress.
+- Led subsidiary-level audits and ensured accuracy in group-level consolidation.
+
+**2. Key Risk-Focused Procedures**
+
+- *Taxation*: Independently audited all subsidiaries for R&D deduction, cross-border tax risk; prepared VAT & CIT reconciliation and tax-book adjustments.
+- *CIP Turnover (2023)*: Reviewed completion and capitalization of large-scale construction; validated timing, cost allocation, and depreciation impact.
+- *Goodwill Impairment*: Collaborated with valuers to test CGU assignment, DCF model assumptions (growth/discount).
+- *Equity Compensation*: Calculated expenses and tested accounting for stock-based compensation (RSU, ESOP), including grant-date fair value and vesting.
+- *Revenue/COGS*: Analyzed GM shifts by segment (e.g. LiPF6, fluoropolymers); broke down cost structure (raw material >60%) to identify irregularities.
+- *Earnings Forecast Testing*: Verified key assumptions on price, capacity ramp-up, cost curves, and sales projections.
+
+**3. Project Management**
+
+- Coordinated physical inventory for 10+ global subsidiaries (Poland, US), planned audit procedures, and resolved on-site issues.
+- As site lead, managed full audit of **fluorochem** business (esp. *Sanming Haikefu*), oversaw staff allocation, execution, review, and client communication.
+
+##### **Annual Audit – *Porsche Automotive Investment GmbH, China Branches(PAIG China) | 2021–2023***
+
+**Company Background**: Wholly owned subsidiary of Porsche Holding Salzburg (Volkswagen Group), responsible for Porsche, Audi, Bentley, and BMW (MINI) dealer networks in Greater China, with 46 4S dealerships.
+
+**Key Responsibilities and Achievements**:
+
+**1. Lead Auditor for Multi-brand 4S Stores**
+
+- Served as on-site lead auditor for 6 luxury-brand 4S stores (Porsche, Audi, BMW), each with revenue > ¥100M.
+- Participated in group-level financial reporting and consolidation covering all 46 stores.
+
+**2. Revenue Analysis & Interviews**
+
+- Performed margin bridge testing by vehicle model (e.g. Taycan EV, BMW ICE models), constructed fluctuation matrix explaining policy and chip shortages.
+- Interviewed dealership CFOs and sales heads to understand pricing, demand outlook, and key volume drivers.
+
+**3. Rebate Policy Review**
+
+- Conducted senior-level interviews to collect rebate policies (BMW, Audi).
+- Designed and executed rebate calculation testing for selected stores to validate accuracy, timing, and risk of overstatement.
+
+**4. Group Tax Audit Management**
+
+- Led tax audits for ~40 legal entities, prepared VAT and CIT reconciliation and tax-book adjustment schedules.
+
+
+####  Capstone Project – 340B Drug Demand Forecasting & Anomaly Detection
+*Vertex Pharmaceuticals × UCSD Rady School | Spring 2025*
+
+- Built ZIP3-level forecasting and anomaly detection models to support inventory planning and audit prioritization across Vertex’s 340B market.
+- Cleaned and merged 34K+ shipment and dispense records; engineered lag features, rolling averages, and regional entity metrics.
+- Trained an XGBoost model using rolling-window cross-validation, achieving <10% error in low-variance regions and identifying over-forecasting risks elsewhere.
+- Designed a dual anomaly detection system using z-score and Isolation Forest to flag unusual dispense-demand gaps at regional and national levels.
+- Delivered insights that enabled an estimated $285K in annual savings and informed monthly planning and compliance audits.
+
+### 中文
+
+####  安永工作经历
+
+##### IPO 项目
+*钧崴电子(301458.SZ)*
+
+- 对主要客户及供应商进行实地走访，确认销售合同条款及执行情况。
+- 收集可比公司数据，分析毛利率、费用率、周转率等，并与钧崴管理层访谈，了解差异来源及细分业务。
+- 编写并汇总长期资产、收入、租赁、期间费用及关联方交易等审计底稿及披露材料。
+
+#### Capstone 项目 – 340B药品预测与异常检测
+
+- 为 Vertex 公司构建 ZIP3 级别的需求预测与异常检测模型。
+- 构造时滞特征和滚动统计指标，在稳定区域内预测误差低于10%。
+- 成功识别异常趋势并提出节约建议，预计年度节省超过28.5万美元。
