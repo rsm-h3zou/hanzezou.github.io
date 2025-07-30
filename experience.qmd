@@ -4,7 +4,7 @@ format: html
 ---
 
 
-## Project Experience {.tabset}
+## {.tabset}
 
 ### English
 
@@ -95,20 +95,3 @@ format: html
 - Trained an XGBoost model using rolling-window cross-validation, achieving <10% error in low-variance regions and identifying over-forecasting risks elsewhere.
 - Designed a dual anomaly detection system using z-score and Isolation Forest to flag unusual dispense-demand gaps at regional and national levels.
 - Delivered insights that enabled an estimated $285K in annual savings and informed monthly planning and compliance audits.
-
-### 中文
-
-####  安永工作经历
-
-##### IPO 项目
-*钧崴电子(301458.SZ)*
-
-- 对主要客户及供应商进行实地走访，确认销售合同条款及执行情况。
-- 收集可比公司数据，分析毛利率、费用率、周转率等，并与钧崴管理层访谈，了解差异来源及细分业务。
-- 编写并汇总长期资产、收入、租赁、期间费用及关联方交易等审计底稿及披露材料。
-
-#### Capstone 项目 – 340B药品预测与异常检测
-
-- 为 Vertex 公司构建 ZIP3 级别的需求预测与异常检测模型。
-- 构造时滞特征和滚动统计指标，在稳定区域内预测误差低于10%。
-- 成功识别异常趋势并提出节约建议，预计年度节省超过28.5万美元。
