@@ -1,7 +1,7 @@
 ---
 title: "My Projects"
 listing:
-    contents: blog
+    contents: "blog/*/index.qmd" 
     type: grid
     sort: "data desc"
     categories: false
