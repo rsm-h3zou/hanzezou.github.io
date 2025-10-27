@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<div id="36e200f5" class="cell" data-execution_count="1">
+<div id="b63d38cb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyrsm <span class="im">as</span> rsm</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -269,7 +269,7 @@ The goal was to create a unified structure that allows direct comparison between
 <section id="labeling-treatment-and-control-groups" class="level4">
 <h4 class="anchored" data-anchor-id="labeling-treatment-and-control-groups">1. Labeling Treatment and Control Groups</h4>
 <p>A binary variable <code>ad</code> was added to both datasets:</p>
-<div id="862ae073" class="cell" data-execution_count="3">
+<div id="b012400d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a variable “ad” to cg_ad_random and set its value to 1 for all rows</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cg_ad_random[<span class="st">"ad"</span>] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cg_ad_random.head()</span>
@@ -440,7 +440,7 @@ The goal was to create a unified structure that allows direct comparison between
 <section id="combining-the-datasets" class="level4">
 <h4 class="anchored" data-anchor-id="combining-the-datasets">2. Combining the Datasets</h4>
 <p>Both groups were stacked vertically into one dataset:</p>
-<div id="77bc3c20" class="cell" data-execution_count="4">
+<div id="bfa5e61c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a stacked dataset for the uplift analysis by combining cg_organic_control(Group 1) and cg_ad_random (Group 2). Use cg_rct_stacked as the name for the stacked dataset.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked <span class="op">=</span> pd.concat([cg_organic_control, cg_ad_random], axis<span class="op">=</span><span class="dv">0</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -613,7 +613,7 @@ The goal was to create a unified structure that allows direct comparison between
 <section id="creating-training-and-test-splits" class="level4">
 <h4 class="anchored" data-anchor-id="creating-training-and-test-splits">3. Creating Training and Test Splits</h4>
 <p>A new variable <code>training</code> was generated using stratified sampling by both <code>converted</code> and <code>ad</code>:</p>
-<div id="1f3da2a0" class="cell" data-execution_count="5">
+<div id="f0be7857" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a training variable (70% training and 30% test). Use 1234 as the seed. Use “converted” and “ad” as the blocking variables, in that order.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked[<span class="st">"training"</span>] <span class="op">=</span> rsm.model.make_train(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> cg_rct_stacked, </span>
@@ -786,7 +786,7 @@ The goal was to create a unified structure that allows direct comparison between
 <section id="validating-stratification" class="level4">
 <h4 class="anchored" data-anchor-id="validating-stratification">4. Validating Stratification</h4>
 <p>A cross-tabulation confirmed that conversion rates were balanced between the training and test sets within both groups:</p>
-<div id="c973551e" class="cell" data-execution_count="6">
+<div id="4d1300ec" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the probability of yes/no is similar across the training and test sets for ad ==0 and ad == 1.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pd.crosstab(cg_rct_stacked.converted, [cg_rct_stacked.ad, cg_rct_stacked.training],normalize<span class="op">=</span><span class="st">"columns"</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -844,7 +844,7 @@ The goal was to create a unified structure that allows direct comparison between
 <p>To estimate the causal effect of advertising on conversion, two <strong>logistic regression models</strong> were trained separately for the treatment group (<code>ad = 1</code>) and the control group (<code>ad = 0</code>).<br>
 Both models used the same set of explanatory variables derived from in-game telemetry data.<br>
 Variables unrelated to player behavior or statistically insignificant in preliminary tests (e.g., <code>TimesKilled</code>, <code>NumFriendRequestIgnored</code>, <code>DaysUser</code>, <code>AcquiredIonWeapon</code>) were excluded to reduce noise and potential multicollinearity.</p>
-<div id="f0362d36" class="cell" data-execution_count="7">
+<div id="d45e7207" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>['GameLevel',
  'NumGameDays',
@@ -867,7 +867,7 @@ Variables unrelated to player behavior or statistically insignificant in prelimi
  'UserHasOldOS']</code></pre>
 </div>
 </div>
-<div id="63f6744c" class="cell" data-execution_count="8">
+<div id="50b69155" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove insignificant variables</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"TimesKilled"</span>, <span class="st">"TimesNavigator"</span>,<span class="st">"NumInGameMessagesSent"</span>,<span class="st">"NumFriendRequestIgnored"</span>,<span class="st">"DaysUser"</span>,<span class="st">"AcquiredIonWeapon"</span>,<span class="st">"PurchasedCoinPackSmall"</span>,<span class="st">"UserConsole"</span>]:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> evar:</span>
@@ -889,7 +889,7 @@ Variables unrelated to player behavior or statistically insignificant in prelimi
 </div>
 </div>
 <p><strong>Treatment Model</strong> :</p>
-<div id="546bb279" class="cell" data-execution_count="9">
+<div id="63deaacf" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>clf_treatment <span class="op">=</span> rsm.model.logistic(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> cg_rct_stacked.query(<span class="st">"training == 1 &amp; ad == 1"</span>), </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    rvar <span class="op">=</span> <span class="st">"converted"</span>,</span>
@@ -931,7 +931,7 @@ Nr obs: 21,000</code></pre>
 </div>
 </div>
 <p><strong>Control Model</strong> :</p>
-<div id="3b5e494c" class="cell" data-execution_count="10">
+<div id="5e95402e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>clf_control <span class="op">=</span> rsm.model.logistic(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> cg_rct_stacked.query(<span class="st">"training == 1 &amp; ad == 0"</span>), </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    rvar <span class="op">=</span> <span class="st">"converted"</span>,</span>
@@ -978,7 +978,7 @@ These results indicate that <strong>highly engaged players</strong>—those with
 <p>Predicted probabilities from both regressions were combined to compute an <strong>uplift score</strong>, defined as:</p>
 <p>[ _i = (Y=1 ad=1, X_i) - (Y=1 ad=0, X_i) ]</p>
 <p>This value represents the incremental likelihood of purchase attributable to advertising.</p>
-<div id="e1d5291f" class="cell" data-execution_count="11">
+<div id="5a5a1705" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pred_store <span class="op">=</span> cg_rct_stacked.copy()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pred_store[<span class="st">"clf_pred_treatment"</span>] <span class="op">=</span> clf_treatment.predict(cg_rct_stacked)[<span class="st">'prediction'</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pred_store[<span class="st">"clf_pred_control"</span>] <span class="op">=</span> clf_control.predict(cg_rct_stacked)[<span class="st">'prediction'</span>]</span>
@@ -986,7 +986,7 @@ These results indicate that <strong>highly engaged players</strong>—those with
 </div>
 <p>Using the <code>uplift_tab</code> function with 20 quantile bins, the resulting <strong>uplift table</strong> and <strong>incremental uplift plot</strong> demonstrated that the model effectively distinguishes between segments positively influenced by ads and those with neutral or negative responses.<br>
 The top-scored deciles produced substantial incremental response gains, confirming that logistic regression provides a <strong>meaningful baseline</strong> for uplift-based targeting before testing more complex models such as Random Forest or XGBoost.</p>
-<div id="80a8765a" class="cell" data-execution_count="12">
+<div id="3f3b9854" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>clf_tab <span class="op">=</span> rsm.uplift_tab(pred_store.query(<span class="st">"training == 0"</span>), <span class="st">"converted"</span>, <span class="st">"yes"</span>, <span class="st">"clf_uplift_score"</span>, <span class="st">"ad"</span>, <span class="dv">1</span>, qnt <span class="op">=</span> <span class="dv">20</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>clf_tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -1284,7 +1284,7 @@ The top-scored deciles produced substantial incremental response gains, confirmi
 <p>The <strong>incremental uplift curve</strong> demonstrates that the logistic regression uplift model effectively distinguishes between customers who are positively influenced by advertising and those who are not.<br>
 The incremental gain peaks around the <strong>top 30–40%</strong> of the population, where the additional conversion rate is the highest.<br>
 Beyond this range, the curve begins to flatten, indicating diminishing marginal returns from additional targeting.</p>
-<div id="058df200" class="cell" data-execution_count="13">
+<div id="1863a88e" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1295,7 +1295,7 @@ Beyond this range, the curve begins to flatten, indicating diminishing marginal 
 </div>
 <p>The <strong>uplift distribution plot</strong> provides a complementary view: the highest deciles exhibit strong positive uplift, while the lowest segments show negative uplift values.<br>
 This implies that targeting low-scoring users could even reduce conversions—highlighting the importance of selective marketing.</p>
-<div id="5cf3d77c" class="cell" data-execution_count="14">
+<div id="ce606262" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1310,7 +1310,7 @@ This implies that targeting low-scoring users could even reduce conversions—hi
 <h3 class="anchored" data-anchor-id="comparison-with-propensity-model">Comparison with Propensity Model</h3>
 <p>When comparing the uplift and propensity-based approaches, the <strong>uplift model (<code>clf_uplift_score</code>)</strong> consistently outperforms the <strong>propensity model (<code>clf_pred_treatment</code>)</strong> across nearly all quantile bins.<br>
 As seen in the incremental uplift plot, the uplift curve lies <strong>above</strong> the propensity curve, achieving higher incremental gains for the same proportion of targeted customers.</p>
-<div id="57120a25" class="cell" data-execution_count="15">
+<div id="24820964" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1322,7 +1322,7 @@ As seen in the incremental uplift plot, the uplift curve lies <strong>above</str
 <p>This shows that the uplift model better identifies <strong>causally responsive segments</strong>, rather than simply those with high baseline purchase probabilities.</p>
 <p>The uplift bar chart further confirms this pattern: although both models capture high-value customers, the uplift model more effectively isolates the <strong>truly persuadable users</strong> who convert <em>because</em> of the ad.<br>
 This distinction is key for efficient campaign allocation.</p>
-<div id="03857b88" class="cell" data-execution_count="16">
+<div id="9d4fe76e" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1336,7 +1336,7 @@ This distinction is key for efficient campaign allocation.</p>
 <section id="profitability-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="profitability-analysis">Profitability Analysis</h3>
 <p>Based on the extrapolation to a total audience of <strong>120,000 customers</strong>, targeting the top <strong>25% (≈30,000 users)</strong> using the uplift model yields approximately <strong>$45,443</strong> in additional profit compared to no targeting.</p>
-<div id="bc971b31" class="cell" data-execution_count="17">
+<div id="ff721b0b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>perc <span class="op">=</span> <span class="dv">30000</span> <span class="op">/</span> <span class="dv">120000</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clf_incremental <span class="op">=</span> clf_tab[clf_tab[<span class="st">"cum_prop"</span>] <span class="op">==</span> perc][<span class="st">"incremental_resp"</span>].item()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>clf_extra_profit <span class="op">=</span> clf_incremental <span class="op">*</span> (<span class="dv">120000</span> <span class="op">/</span> <span class="dv">9000</span>) <span class="op">*</span> <span class="fl">14.99</span> <span class="op">-</span> <span class="dv">30000</span> <span class="op">*</span><span class="fl">1.5</span></span>
@@ -1346,7 +1346,7 @@ This distinction is key for efficient campaign allocation.</p>
 </div>
 </div>
 <p>When comparing against the propensity-based targeting strategy, the uplift model delivers an estimated <strong>$13,457.75 higher incremental profit</strong> under the same budget assumptions.</p>
-<div id="f7b49907" class="cell" data-execution_count="18">
+<div id="8b90fccd" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>clf_propensity_tab <span class="op">=</span> rsm.uplift_tab(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    pred_store.query(<span class="st">"training == 0"</span>),</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"converted"</span>,</span>
