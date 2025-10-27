@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hanze Zou">
+<meta name="dcterms.date" content="2025-10-28">
+
+<title>Creative Gaming: Uplift Modeling – Hanze Zou</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Hanze Zou</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../experience.html"> 
+<span class="menu-text">Projects Experience</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#case-overview-creative-gaming-uplift-modeling" id="toc-case-overview-creative-gaming-uplift-modeling" class="nav-link active" data-scroll-target="#case-overview-creative-gaming-uplift-modeling">Case Overview – Creative Gaming: Uplift Modeling</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
+  <li><a href="#data-preprocessing-for-uplift-modeling" id="toc-data-preprocessing-for-uplift-modeling" class="nav-link" data-scroll-target="#data-preprocessing-for-uplift-modeling">Data Preprocessing for Uplift Modeling</a></li>
+  </ul></li>
+  <li><a href="#logistic-regression-uplift-model" id="toc-logistic-regression-uplift-model" class="nav-link" data-scroll-target="#logistic-regression-uplift-model">Logistic Regression Uplift Model</a></li>
+  <li><a href="#model-evaluation-and-comparison" id="toc-model-evaluation-and-comparison" class="nav-link" data-scroll-target="#model-evaluation-and-comparison">Model Evaluation and Comparison</a>
+  <ul class="collapse">
+  <li><a href="#uplift-model-performance" id="toc-uplift-model-performance" class="nav-link" data-scroll-target="#uplift-model-performance">Uplift Model Performance</a></li>
+  <li><a href="#comparison-with-propensity-model" id="toc-comparison-with-propensity-model" class="nav-link" data-scroll-target="#comparison-with-propensity-model">Comparison with Propensity Model</a></li>
+  <li><a href="#profitability-analysis" id="toc-profitability-analysis" class="nav-link" data-scroll-target="#profitability-analysis">Profitability Analysis</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  <li><a href="#uplift-model-performance-1" id="toc-uplift-model-performance-1" class="nav-link" data-scroll-target="#uplift-model-performance-1">Uplift Model Performance</a></li>
+  <li><a href="#comparison-with-propensity-model-1" id="toc-comparison-with-propensity-model-1" class="nav-link" data-scroll-target="#comparison-with-propensity-model-1">Comparison with Propensity Model</a></li>
+  <li><a href="#profitability-analysis-1" id="toc-profitability-analysis-1" class="nav-link" data-scroll-target="#profitability-analysis-1">Profitability Analysis</a></li>
+  <li><a href="#key-takeaways-1" id="toc-key-takeaways-1" class="nav-link" data-scroll-target="#key-takeaways-1">Key Takeaways</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Creative Gaming: Uplift Modeling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Hanze Zou </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 28, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="case-overview-creative-gaming-uplift-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="case-overview-creative-gaming-uplift-modeling">Case Overview – Creative Gaming: Uplift Modeling</h2>
+<p>The Creative Gaming: Space Pirates case explores the marketing challenges faced by Creative Gaming, a mobile game company whose hit title, Space Pirates, achieved rapid early success. To maintain player engagement and drive revenue, the company launched a paid campaign expansion called Zalon, priced at $14.99. However, only 5.75% of active users purchased the campaign, raising concerns about pricing and marketing effectiveness. CMO Mi Haruki tasked the analytics team with developing a data-driven targeting strategy to increase campaign adoption without changing the price.</p>
+<p>Building on previous “propensity-to-buy” work, the new assignment focuses on <strong>uplift modeling</strong>—an approach that estimates the incremental impact of marketing interventions by distinguishing between users who buy because of an ad and those who would have purchased anyway. Using experimental data from 60,000 players—half exposed to ads (cg_ad_random) and half in the control group (cg_organic_control)—the objective is to predict which users show the highest causal uplift in conversion probability.</p>
+<p>The project involves training multiple machine learning models—logistic regression, neural networks, random forests, and XGBoost—to compare uplift performance with traditional propensity models. The analysis will also determine the optimal share of customers to target in order to maximize incremental profit, not just response rate.</p>
+<p>Ultimately, this case highlights how uplift modeling enables Creative Gaming to allocate marketing resources efficiently, improving ROI by focusing only on users whose behavior can be positively influenced by advertising.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="description" class="level3">
+<h3 class="anchored" data-anchor-id="description">Description</h3>
+<div id="36e200f5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyrsm <span class="im">as</span> rsm</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rsm.md(<span class="st">"cg_ad_treatment_description.md"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p>Game telemetry dataset used for the Creative Gaming: Propensity-to-Buy Modeling case</p>
+<section id="feature-descriptions" class="level4">
+<h4 class="anchored" data-anchor-id="feature-descriptions">Feature descriptions</h4>
+<ul>
+<li>converted: Purchased the Zalon campain (“yes” or “no”)</li>
+<li>GameLevel: Highest level of game achieved by the user</li>
+<li>NumGameDays: Number of days user played the game in last month (with or without network connection)</li>
+<li>NumGameDays4Plus: Number of days user played the game in last month with 4 or more total users (this implies using a network connection)</li>
+<li>NumInGameMessagesSent: Number of in-game messages sent to friends</li>
+<li>NumFriends: Number of friends to which the user is connected (necessary to crew together in multiplayer mode)</li>
+<li>NumFriendRequestIgnored: Number of friend requests this user has not replied to since game inception</li>
+<li>NumSpaceHeroBadges: Number of “Space Hero” badges, the highest distinction for gameplay in Space Pirates</li>
+<li>AcquiredSpaceship: Flag if the user owns a spaceship, i.e., does not have to crew on another user’s or NPC’s space ship (“no” or “yes”)</li>
+<li>AcquiredIonWeapon: Flag if the user owns the powerful “ion weapon” (“no” or “yes”)</li>
+<li>TimesLostSpaceship: The number of times the user destroyed his/her spaceship during gameplay. Spaceships need to be re-acquired if destroyed.</li>
+<li>TimesKilled: Number of times the user was killed during gameplay</li>
+<li>TimesCaptain: Number of times in last month that the user played in the role of a captain</li>
+<li>TimesNavigator: Number of times in last month that the user played in the role of a navigator</li>
+<li>PurchasedCoinPackSmall: Flag if the user purchased a small pack of Zathium in last month (“no” or “yes”)</li>
+<li>PurchasedCoinPackLarge: Flag if the user purchased a large pack of Zathium in last month (“no” or “yes”)</li>
+<li>NumAdsClicked: Number of in-app ads the user has clicked on</li>
+<li>DaysUser: Number of days since user established a user ID with Creative Gaming (for Space Pirates or previous games)</li>
+<li>UserConsole: Flag if the user plays Creative Gaming games on a console (“no” or “yes”)</li>
+<li>UserHasOldOS: Flag if the user has iOS version 10 or earlier (“no” or “yes”)</li>
+<li>rnd_30k: Dummy variable that randomly selects 30K customers (1) and the remaining 90K (0)</li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+<section id="data-preprocessing-for-uplift-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="data-preprocessing-for-uplift-modeling">Data Preprocessing for Uplift Modeling</h3>
+<p>Before building the uplift model, several preprocessing steps were performed to construct a dataset suitable for causal inference.<br>
+The goal was to create a unified structure that allows direct comparison between users exposed to the advertisement (<em>treatment group</em>) and those who were not (<em>control group</em>).</p>
+<hr>
+<section id="labeling-treatment-and-control-groups" class="level4">
+<h4 class="anchored" data-anchor-id="labeling-treatment-and-control-groups">1. Labeling Treatment and Control Groups</h4>
+<p>A binary variable <code>ad</code> was added to both datasets:</p>
+<div id="862ae073" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a variable “ad” to cg_ad_random and set its value to 1 for all rows</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cg_ad_random[<span class="st">"ad"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cg_ad_random.head()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a variable “ad” to cg_organic_control and set its value to 0 for all rows</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cg_organic_control[<span class="st">"ad"</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>cg_organic_control.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">converted</th>
+<th data-quarto-table-cell-role="th">GameLevel</th>
+<th data-quarto-table-cell-role="th">NumGameDays</th>
+<th data-quarto-table-cell-role="th">NumGameDays4Plus</th>
+<th data-quarto-table-cell-role="th">NumInGameMessagesSent</th>
+<th data-quarto-table-cell-role="th">NumSpaceHeroBadges</th>
+<th data-quarto-table-cell-role="th">NumFriendRequestIgnored</th>
+<th data-quarto-table-cell-role="th">NumFriends</th>
+<th data-quarto-table-cell-role="th">AcquiredSpaceship</th>
+<th data-quarto-table-cell-role="th">AcquiredIonWeapon</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">TimesKilled</th>
+<th data-quarto-table-cell-role="th">TimesCaptain</th>
+<th data-quarto-table-cell-role="th">TimesNavigator</th>
+<th data-quarto-table-cell-role="th">PurchasedCoinPackSmall</th>
+<th data-quarto-table-cell-role="th">PurchasedCoinPackLarge</th>
+<th data-quarto-table-cell-role="th">NumAdsClicked</th>
+<th data-quarto-table-cell-role="th">DaysUser</th>
+<th data-quarto-table-cell-role="th">UserConsole</th>
+<th data-quarto-table-cell-role="th">UserHasOldOS</th>
+<th data-quarto-table-cell-role="th">ad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>no</td>
+<td>7</td>
+<td>18</td>
+<td>0</td>
+<td>124</td>
+<td>0</td>
+<td>81</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>no</td>
+<td>yes</td>
+<td>3</td>
+<td>2101</td>
+<td>no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>no</td>
+<td>10</td>
+<td>3</td>
+<td>2</td>
+<td>60</td>
+<td>0</td>
+<td>18</td>
+<td>479</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>7</td>
+<td>1644</td>
+<td>yes</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>no</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>no</td>
+<td>no</td>
+<td>8</td>
+<td>3197</td>
+<td>yes</td>
+<td>yes</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>no</td>
+<td>2</td>
+<td>11</td>
+<td>1</td>
+<td>125</td>
+<td>0</td>
+<td>73</td>
+<td>217</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>6</td>
+<td>913</td>
+<td>no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>no</td>
+<td>8</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>51</td>
+<td>yes</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>yes</td>
+<td>no</td>
+<td>21</td>
+<td>2009</td>
+<td>yes</td>
+<td>no</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="combining-the-datasets" class="level4">
+<h4 class="anchored" data-anchor-id="combining-the-datasets">2. Combining the Datasets</h4>
+<p>Both groups were stacked vertically into one dataset:</p>
+<div id="77bc3c20" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a stacked dataset for the uplift analysis by combining cg_organic_control(Group 1) and cg_ad_random (Group 2). Use cg_rct_stacked as the name for the stacked dataset.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked <span class="op">=</span> pd.concat([cg_organic_control, cg_ad_random], axis<span class="op">=</span><span class="dv">0</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">converted</th>
+<th data-quarto-table-cell-role="th">GameLevel</th>
+<th data-quarto-table-cell-role="th">NumGameDays</th>
+<th data-quarto-table-cell-role="th">NumGameDays4Plus</th>
+<th data-quarto-table-cell-role="th">NumInGameMessagesSent</th>
+<th data-quarto-table-cell-role="th">NumSpaceHeroBadges</th>
+<th data-quarto-table-cell-role="th">NumFriendRequestIgnored</th>
+<th data-quarto-table-cell-role="th">NumFriends</th>
+<th data-quarto-table-cell-role="th">AcquiredSpaceship</th>
+<th data-quarto-table-cell-role="th">AcquiredIonWeapon</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">TimesKilled</th>
+<th data-quarto-table-cell-role="th">TimesCaptain</th>
+<th data-quarto-table-cell-role="th">TimesNavigator</th>
+<th data-quarto-table-cell-role="th">PurchasedCoinPackSmall</th>
+<th data-quarto-table-cell-role="th">PurchasedCoinPackLarge</th>
+<th data-quarto-table-cell-role="th">NumAdsClicked</th>
+<th data-quarto-table-cell-role="th">DaysUser</th>
+<th data-quarto-table-cell-role="th">UserConsole</th>
+<th data-quarto-table-cell-role="th">UserHasOldOS</th>
+<th data-quarto-table-cell-role="th">ad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>no</td>
+<td>7</td>
+<td>18</td>
+<td>0</td>
+<td>124</td>
+<td>0</td>
+<td>81</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>no</td>
+<td>yes</td>
+<td>3</td>
+<td>2101</td>
+<td>no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>no</td>
+<td>10</td>
+<td>3</td>
+<td>2</td>
+<td>60</td>
+<td>0</td>
+<td>18</td>
+<td>479</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>7</td>
+<td>1644</td>
+<td>yes</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>no</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>no</td>
+<td>no</td>
+<td>8</td>
+<td>3197</td>
+<td>yes</td>
+<td>yes</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>no</td>
+<td>2</td>
+<td>11</td>
+<td>1</td>
+<td>125</td>
+<td>0</td>
+<td>73</td>
+<td>217</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>6</td>
+<td>913</td>
+<td>no</td>
+<td>no</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>no</td>
+<td>8</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>51</td>
+<td>yes</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>yes</td>
+<td>no</td>
+<td>21</td>
+<td>2009</td>
+<td>yes</td>
+<td>no</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<p>This creates a single modeling framework where each observation contains:</p>
+<ul>
+<li>the treatment indicator <code>ad</code></li>
+<li>the target variable <code>converted</code></li>
+<li>user-level telemetry features (e.g., game activity, purchases, messages, etc.)</li>
+</ul>
+</section>
+<section id="creating-training-and-test-splits" class="level4">
+<h4 class="anchored" data-anchor-id="creating-training-and-test-splits">3. Creating Training and Test Splits</h4>
+<p>A new variable <code>training</code> was generated using stratified sampling by both <code>converted</code> and <code>ad</code>:</p>
+<div id="1f3da2a0" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a training variable (70% training and 30% test). Use 1234 as the seed. Use “converted” and “ad” as the blocking variables, in that order.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked[<span class="st">"training"</span>] <span class="op">=</span> rsm.model.make_train(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> cg_rct_stacked, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    test_size <span class="op">=</span> <span class="fl">0.3</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    strat_var<span class="op">=</span>[<span class="st">"converted"</span>, <span class="st">"ad"</span>], </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">1234</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cg_rct_stacked.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">converted</th>
+<th data-quarto-table-cell-role="th">GameLevel</th>
+<th data-quarto-table-cell-role="th">NumGameDays</th>
+<th data-quarto-table-cell-role="th">NumGameDays4Plus</th>
+<th data-quarto-table-cell-role="th">NumInGameMessagesSent</th>
+<th data-quarto-table-cell-role="th">NumSpaceHeroBadges</th>
+<th data-quarto-table-cell-role="th">NumFriendRequestIgnored</th>
+<th data-quarto-table-cell-role="th">NumFriends</th>
+<th data-quarto-table-cell-role="th">AcquiredSpaceship</th>
+<th data-quarto-table-cell-role="th">AcquiredIonWeapon</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">TimesCaptain</th>
+<th data-quarto-table-cell-role="th">TimesNavigator</th>
+<th data-quarto-table-cell-role="th">PurchasedCoinPackSmall</th>
+<th data-quarto-table-cell-role="th">PurchasedCoinPackLarge</th>
+<th data-quarto-table-cell-role="th">NumAdsClicked</th>
+<th data-quarto-table-cell-role="th">DaysUser</th>
+<th data-quarto-table-cell-role="th">UserConsole</th>
+<th data-quarto-table-cell-role="th">UserHasOldOS</th>
+<th data-quarto-table-cell-role="th">ad</th>
+<th data-quarto-table-cell-role="th">training</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>no</td>
+<td>7</td>
+<td>18</td>
+<td>0</td>
+<td>124</td>
+<td>0</td>
+<td>81</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>4</td>
+<td>no</td>
+<td>yes</td>
+<td>3</td>
+<td>2101</td>
+<td>no</td>
+<td>no</td>
+<td>0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>no</td>
+<td>10</td>
+<td>3</td>
+<td>2</td>
+<td>60</td>
+<td>0</td>
+<td>18</td>
+<td>479</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>7</td>
+<td>1644</td>
+<td>yes</td>
+<td>no</td>
+<td>0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>no</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>2</td>
+<td>no</td>
+<td>no</td>
+<td>8</td>
+<td>3197</td>
+<td>yes</td>
+<td>yes</td>
+<td>0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>no</td>
+<td>2</td>
+<td>11</td>
+<td>1</td>
+<td>125</td>
+<td>0</td>
+<td>73</td>
+<td>217</td>
+<td>no</td>
+<td>no</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>yes</td>
+<td>no</td>
+<td>6</td>
+<td>913</td>
+<td>no</td>
+<td>no</td>
+<td>0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>no</td>
+<td>8</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>51</td>
+<td>yes</td>
+<td>no</td>
+<td>...</td>
+<td>2</td>
+<td>1</td>
+<td>yes</td>
+<td>no</td>
+<td>21</td>
+<td>2009</td>
+<td>yes</td>
+<td>no</td>
+<td>0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<p>Stratification ensures that treatment/control and conversion distributions remain balanced between training and test sets, preventing sampling bias.</p>
+</section>
+<section id="validating-stratification" class="level4">
+<h4 class="anchored" data-anchor-id="validating-stratification">4. Validating Stratification</h4>
+<p>A cross-tabulation confirmed that conversion rates were balanced between the training and test sets within both groups:</p>
+<div id="c973551e" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the probability of yes/no is similar across the training and test sets for ad ==0 and ad == 1.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pd.crosstab(cg_rct_stacked.converted, [cg_rct_stacked.ad, cg_rct_stacked.training],normalize<span class="op">=</span><span class="st">"columns"</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ad</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">0</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">1</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">training</th>
+<th data-quarto-table-cell-role="th">0.0</th>
+<th data-quarto-table-cell-role="th">1.0</th>
+<th data-quarto-table-cell-role="th">0.0</th>
+<th data-quarto-table-cell-role="th">1.0</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">converted</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">yes</td>
+<td>0.06</td>
+<td>0.06</td>
+<td>0.13</td>
+<td>0.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">no</td>
+<td>0.94</td>
+<td>0.94</td>
+<td>0.87</td>
+<td>0.87</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="logistic-regression-uplift-model" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-regression-uplift-model">Logistic Regression Uplift Model</h2>
+<p>To estimate the causal effect of advertising on conversion, two <strong>logistic regression models</strong> were trained separately for the treatment group (<code>ad = 1</code>) and the control group (<code>ad = 0</code>).<br>
+Both models used the same set of explanatory variables derived from in-game telemetry data.<br>
+Variables unrelated to player behavior or statistically insignificant in preliminary tests (e.g., <code>TimesKilled</code>, <code>NumFriendRequestIgnored</code>, <code>DaysUser</code>, <code>AcquiredIonWeapon</code>) were excluded to reduce noise and potential multicollinearity.</p>
+<div id="f0362d36" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>['GameLevel',
+ 'NumGameDays',
+ 'NumGameDays4Plus',
+ 'NumInGameMessagesSent',
+ 'NumSpaceHeroBadges',
+ 'NumFriendRequestIgnored',
+ 'NumFriends',
+ 'AcquiredSpaceship',
+ 'AcquiredIonWeapon',
+ 'TimesLostSpaceship',
+ 'TimesKilled',
+ 'TimesCaptain',
+ 'TimesNavigator',
+ 'PurchasedCoinPackSmall',
+ 'PurchasedCoinPackLarge',
+ 'NumAdsClicked',
+ 'DaysUser',
+ 'UserConsole',
+ 'UserHasOldOS']</code></pre>
+</div>
+</div>
+<div id="63f6744c" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove insignificant variables</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"TimesKilled"</span>, <span class="st">"TimesNavigator"</span>,<span class="st">"NumInGameMessagesSent"</span>,<span class="st">"NumFriendRequestIgnored"</span>,<span class="st">"DaysUser"</span>,<span class="st">"AcquiredIonWeapon"</span>,<span class="st">"PurchasedCoinPackSmall"</span>,<span class="st">"UserConsole"</span>]:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> evar:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        evar.remove(col)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>evar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>['GameLevel',
+ 'NumGameDays',
+ 'NumGameDays4Plus',
+ 'NumSpaceHeroBadges',
+ 'NumFriends',
+ 'AcquiredSpaceship',
+ 'TimesLostSpaceship',
+ 'TimesCaptain',
+ 'PurchasedCoinPackLarge',
+ 'NumAdsClicked',
+ 'UserHasOldOS']</code></pre>
+</div>
+</div>
+<p><strong>Treatment Model</strong> :</p>
+<div id="546bb279" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>clf_treatment <span class="op">=</span> rsm.model.logistic(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> cg_rct_stacked.query(<span class="st">"training == 1 &amp; ad == 1"</span>), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    rvar <span class="op">=</span> <span class="st">"converted"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    lev<span class="op">=</span><span class="st">"yes"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    evar <span class="op">=</span> evar, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>clf_treatment.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Logistic regression (GLM)
+Data                 : Not provided
+Response variable    : converted
+Level                : yes
+Explanatory variables: GameLevel, NumGameDays, NumGameDays4Plus, NumSpaceHeroBadges, NumFriends, AcquiredSpaceship, TimesLostSpaceship, TimesCaptain, PurchasedCoinPackLarge, NumAdsClicked, UserHasOldOS
+Null hyp.: There is no effect of x on converted
+Alt. hyp.: There is an effect of x on converted
+
+                                OR     OR%  coefficient  std.error  z.value p.value     
+Intercept                    0.027  -97.3%       -3.597      0.073  -49.297  &lt; .001  ***
+AcquiredSpaceship[yes]       1.087    8.7%        0.084      0.049    1.723   0.085    .
+PurchasedCoinPackLarge[yes]  1.210   21.0%        0.191      0.048    3.949  &lt; .001  ***
+UserHasOldOS[yes]            0.799  -20.1%       -0.224      0.081   -2.756   0.006   **
+GameLevel                    1.059    5.9%        0.058      0.009    6.410  &lt; .001  ***
+NumGameDays                  1.015    1.5%        0.015      0.004    4.195  &lt; .001  ***
+NumGameDays4Plus             1.011    1.1%        0.011      0.006    1.715   0.086    .
+NumSpaceHeroBadges           1.028    2.8%        0.027      0.009    2.978   0.003   **
+NumFriends                   1.002    0.2%        0.002      0.000    9.638  &lt; .001  ***
+TimesLostSpaceship           0.993   -0.7%       -0.007      0.002   -3.159   0.002   **
+TimesCaptain                 1.005    0.5%        0.005      0.002    2.111   0.035    *
+NumAdsClicked                1.094    9.4%        0.089      0.003   33.177  &lt; .001  ***
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Pseudo R-squared (McFadden): 0.096
+Pseudo R-squared (McFadden adjusted): 0.095
+Area under the RO Curve (AUC): 0.711
+Log-likelihood: -7348.152, AIC: 14720.304, BIC: 14815.732
+Chi-squared: 1566.121, df(11), p.value &lt; 0.001 
+Nr obs: 21,000</code></pre>
+</div>
+</div>
+<p><strong>Control Model</strong> :</p>
+<div id="3b5e494c" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>clf_control <span class="op">=</span> rsm.model.logistic(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> cg_rct_stacked.query(<span class="st">"training == 1 &amp; ad == 0"</span>), </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    rvar <span class="op">=</span> <span class="st">"converted"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    lev<span class="op">=</span><span class="st">"yes"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    evar <span class="op">=</span> evar, </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>clf_control.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Logistic regression (GLM)
+Data                 : Not provided
+Response variable    : converted
+Level                : yes
+Explanatory variables: GameLevel, NumGameDays, NumGameDays4Plus, NumSpaceHeroBadges, NumFriends, AcquiredSpaceship, TimesLostSpaceship, TimesCaptain, PurchasedCoinPackLarge, NumAdsClicked, UserHasOldOS
+Null hyp.: There is no effect of x on converted
+Alt. hyp.: There is an effect of x on converted
+
+                                OR     OR%  coefficient  std.error  z.value p.value     
+Intercept                    0.008  -99.2%       -4.797      0.118  -40.594  &lt; .001  ***
+AcquiredSpaceship[yes]       1.500   50.0%        0.406      0.071    5.698  &lt; .001  ***
+PurchasedCoinPackLarge[yes]  1.408   40.8%        0.342      0.073    4.697  &lt; .001  ***
+UserHasOldOS[yes]            0.821  -17.9%       -0.198      0.124   -1.597    0.11     
+GameLevel                    1.103   10.3%        0.098      0.014    6.936  &lt; .001  ***
+NumGameDays                  1.032    3.2%        0.031      0.005    5.812  &lt; .001  ***
+NumGameDays4Plus             1.042    4.2%        0.041      0.008    5.045  &lt; .001  ***
+NumSpaceHeroBadges           1.473   47.3%        0.387      0.012   32.428  &lt; .001  ***
+NumFriends                   1.001    0.1%        0.001      0.000    3.845  &lt; .001  ***
+TimesLostSpaceship           0.942   -5.8%       -0.060      0.006  -10.130  &lt; .001  ***
+TimesCaptain                 0.994   -0.6%       -0.006      0.003   -1.742   0.081    .
+NumAdsClicked                1.029    2.9%        0.029      0.004    7.675  &lt; .001  ***
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Pseudo R-squared (McFadden): 0.192
+Pseudo R-squared (McFadden adjusted): 0.189
+Area under the RO Curve (AUC): 0.822
+Log-likelihood: -3705.11, AIC: 7434.221, BIC: 7529.648
+Chi-squared: 1755.473, df(11), p.value &lt; 0.001 
+Nr obs: 21,000</code></pre>
+</div>
+</div>
+<p>The treatment model achieved a <strong>McFadden pseudo-R²</strong> of approximately <strong>0.096</strong> with an <strong>AUC</strong> of <strong>0.71</strong>, while the control model performed slightly better (pseudo-R² ≈ <strong>0.19</strong>, AUC ≈ <strong>0.82</strong>).<br>
+For both models, features such as <code>GameLevel</code>, <code>NumGameDays</code>, <code>NumSpaceHeroBadges</code>, and <code>NumAdsClicked</code> showed strong positive effects on the probability of purchasing the <em>Zalon</em> campaign.<br>
+These results indicate that <strong>highly engaged players</strong>—those with frequent gameplay and in-app activity—are more likely to convert regardless of ad exposure.</p>
+<p>Predicted probabilities from both regressions were combined to compute an <strong>uplift score</strong>, defined as:</p>
+<p>[ _i = (Y=1 ad=1, X_i) - (Y=1 ad=0, X_i) ]</p>
+<p>This value represents the incremental likelihood of purchase attributable to advertising.</p>
+<div id="e1d5291f" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pred_store <span class="op">=</span> cg_rct_stacked.copy()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pred_store[<span class="st">"clf_pred_treatment"</span>] <span class="op">=</span> clf_treatment.predict(cg_rct_stacked)[<span class="st">'prediction'</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pred_store[<span class="st">"clf_pred_control"</span>] <span class="op">=</span> clf_control.predict(cg_rct_stacked)[<span class="st">'prediction'</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>pred_store[<span class="st">"clf_uplift_score"</span>] <span class="op">=</span> pred_store.clf_pred_treatment <span class="op">-</span> pred_store.clf_pred_control</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>uplift_tab</code> function with 20 quantile bins, the resulting <strong>uplift table</strong> and <strong>incremental uplift plot</strong> demonstrated that the model effectively distinguishes between segments positively influenced by ads and those with neutral or negative responses.<br>
+The top-scored deciles produced substantial incremental response gains, confirming that logistic regression provides a <strong>meaningful baseline</strong> for uplift-based targeting before testing more complex models such as Random Forest or XGBoost.</p>
+<div id="80a8765a" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>clf_tab <span class="op">=</span> rsm.uplift_tab(pred_store.query(<span class="st">"training == 0"</span>), <span class="st">"converted"</span>, <span class="st">"yes"</span>, <span class="st">"clf_uplift_score"</span>, <span class="st">"ad"</span>, <span class="dv">1</span>, qnt <span class="op">=</span> <span class="dv">20</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>clf_tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">pred</th>
+<th data-quarto-table-cell-role="th">bins</th>
+<th data-quarto-table-cell-role="th">cum_prop</th>
+<th data-quarto-table-cell-role="th">T_resp</th>
+<th data-quarto-table-cell-role="th">T_n</th>
+<th data-quarto-table-cell-role="th">C_resp</th>
+<th data-quarto-table-cell-role="th">C_n</th>
+<th data-quarto-table-cell-role="th">incremental_resp</th>
+<th data-quarto-table-cell-role="th">inc_uplift</th>
+<th data-quarto-table-cell-role="th">uplift</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>clf_uplift_score</td>
+<td>1</td>
+<td>0.05</td>
+<td>194</td>
+<td>450</td>
+<td>67</td>
+<td>618</td>
+<td>145.213592</td>
+<td>1.613484</td>
+<td>0.322697</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>clf_uplift_score</td>
+<td>2</td>
+<td>0.10</td>
+<td>318</td>
+<td>900</td>
+<td>96</td>
+<td>1170</td>
+<td>244.153846</td>
+<td>2.712821</td>
+<td>0.223019</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>clf_uplift_score</td>
+<td>3</td>
+<td>0.15</td>
+<td>433</td>
+<td>1350</td>
+<td>125</td>
+<td>1710</td>
+<td>334.315789</td>
+<td>3.714620</td>
+<td>0.201852</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>clf_uplift_score</td>
+<td>4</td>
+<td>0.20</td>
+<td>541</td>
+<td>1800</td>
+<td>156</td>
+<td>2161</td>
+<td>411.060157</td>
+<td>4.567335</td>
+<td>0.171264</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>clf_uplift_score</td>
+<td>5</td>
+<td>0.25</td>
+<td>599</td>
+<td>2250</td>
+<td>172</td>
+<td>2642</td>
+<td>452.520061</td>
+<td>5.028001</td>
+<td>0.095625</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>clf_uplift_score</td>
+<td>6</td>
+<td>0.30</td>
+<td>647</td>
+<td>2700</td>
+<td>181</td>
+<td>3084</td>
+<td>488.536965</td>
+<td>5.428188</td>
+<td>0.086305</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>clf_uplift_score</td>
+<td>7</td>
+<td>0.35</td>
+<td>689</td>
+<td>3150</td>
+<td>199</td>
+<td>3621</td>
+<td>515.884838</td>
+<td>5.732054</td>
+<td>0.059814</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>clf_uplift_score</td>
+<td>8</td>
+<td>0.40</td>
+<td>730</td>
+<td>3600</td>
+<td>211</td>
+<td>4108</td>
+<td>545.092502</td>
+<td>6.056583</td>
+<td>0.066470</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>clf_uplift_score</td>
+<td>9</td>
+<td>0.45</td>
+<td>754</td>
+<td>4049</td>
+<td>232</td>
+<td>4572</td>
+<td>548.538933</td>
+<td>6.094877</td>
+<td>0.008193</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>clf_uplift_score</td>
+<td>10</td>
+<td>0.50</td>
+<td>791</td>
+<td>4500</td>
+<td>244</td>
+<td>5074</td>
+<td>574.602680</td>
+<td>6.384474</td>
+<td>0.058136</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>clf_uplift_score</td>
+<td>11</td>
+<td>0.55</td>
+<td>830</td>
+<td>4950</td>
+<td>254</td>
+<td>5525</td>
+<td>602.434389</td>
+<td>6.693715</td>
+<td>0.064494</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>clf_uplift_score</td>
+<td>12</td>
+<td>0.60</td>
+<td>861</td>
+<td>5400</td>
+<td>273</td>
+<td>6012</td>
+<td>615.790419</td>
+<td>6.842116</td>
+<td>0.029875</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>clf_uplift_score</td>
+<td>13</td>
+<td>0.65</td>
+<td>886</td>
+<td>5850</td>
+<td>282</td>
+<td>6458</td>
+<td>630.549396</td>
+<td>7.006104</td>
+<td>0.035376</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>clf_uplift_score</td>
+<td>14</td>
+<td>0.70</td>
+<td>928</td>
+<td>6300</td>
+<td>295</td>
+<td>6886</td>
+<td>658.104560</td>
+<td>7.312273</td>
+<td>0.062960</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>clf_uplift_score</td>
+<td>15</td>
+<td>0.75</td>
+<td>962</td>
+<td>6750</td>
+<td>310</td>
+<td>7350</td>
+<td>677.306122</td>
+<td>7.525624</td>
+<td>0.043228</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>clf_uplift_score</td>
+<td>16</td>
+<td>0.80</td>
+<td>1007</td>
+<td>7200</td>
+<td>323</td>
+<td>7760</td>
+<td>707.309278</td>
+<td>7.858992</td>
+<td>0.068293</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>clf_uplift_score</td>
+<td>17</td>
+<td>0.85</td>
+<td>1041</td>
+<td>7650</td>
+<td>334</td>
+<td>8232</td>
+<td>730.613703</td>
+<td>8.117930</td>
+<td>0.052250</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>clf_uplift_score</td>
+<td>18</td>
+<td>0.90</td>
+<td>1079</td>
+<td>8100</td>
+<td>359</td>
+<td>8624</td>
+<td>741.813080</td>
+<td>8.242368</td>
+<td>0.020669</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>clf_uplift_score</td>
+<td>19</td>
+<td>0.95</td>
+<td>1131</td>
+<td>8550</td>
+<td>429</td>
+<td>8828</td>
+<td>715.509515</td>
+<td>7.950106</td>
+<td>-0.227582</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>clf_uplift_score</td>
+<td>20</td>
+<td>1.00</td>
+<td>1174</td>
+<td>9000</td>
+<td>512</td>
+<td>9000</td>
+<td>662.000000</td>
+<td>7.355556</td>
+<td>-0.387003</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="model-evaluation-and-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="model-evaluation-and-comparison">Model Evaluation and Comparison</h2>
+<section id="uplift-model-performance" class="level3">
+<h3 class="anchored" data-anchor-id="uplift-model-performance">Uplift Model Performance</h3>
+<p>The <strong>incremental uplift curve</strong> demonstrates that the logistic regression uplift model effectively distinguishes between customers who are positively influenced by advertising and those who are not.<br>
+The incremental gain peaks around the <strong>top 30–40%</strong> of the population, where the additional conversion rate is the highest.<br>
+Beyond this range, the curve begins to flatten, indicating diminishing marginal returns from additional targeting.</p>
+<div id="058df200" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-1.png" width="589" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>uplift distribution plot</strong> provides a complementary view: the highest deciles exhibit strong positive uplift, while the lowest segments show negative uplift values.<br>
+This implies that targeting low-scoring users could even reduce conversions—highlighting the importance of selective marketing.</p>
+<div id="5cf3d77c" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.png" width="602" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="comparison-with-propensity-model" class="level3">
+<h3 class="anchored" data-anchor-id="comparison-with-propensity-model">Comparison with Propensity Model</h3>
+<p>When comparing the uplift and propensity-based approaches, the <strong>uplift model (<code>clf_uplift_score</code>)</strong> consistently outperforms the <strong>propensity model (<code>clf_pred_treatment</code>)</strong> across nearly all quantile bins.<br>
+As seen in the incremental uplift plot, the uplift curve lies <strong>above</strong> the propensity curve, achieving higher incremental gains for the same proportion of targeted customers.</p>
+<div id="57120a25" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-1.png" width="589" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This shows that the uplift model better identifies <strong>causally responsive segments</strong>, rather than simply those with high baseline purchase probabilities.</p>
+<p>The uplift bar chart further confirms this pattern: although both models capture high-value customers, the uplift model more effectively isolates the <strong>truly persuadable users</strong> who convert <em>because</em> of the ad.<br>
+This distinction is key for efficient campaign allocation.</p>
+<div id="03857b88" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-1.png" width="602" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="profitability-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="profitability-analysis">Profitability Analysis</h3>
+<p>Based on the extrapolation to a total audience of <strong>120,000 customers</strong>, targeting the top <strong>25% (≈30,000 users)</strong> using the uplift model yields approximately <strong>$45,443</strong> in additional profit compared to no targeting.</p>
+<div id="bc971b31" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>perc <span class="op">=</span> <span class="dv">30000</span> <span class="op">/</span> <span class="dv">120000</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clf_incremental <span class="op">=</span> clf_tab[clf_tab[<span class="st">"cum_prop"</span>] <span class="op">==</span> perc][<span class="st">"incremental_resp"</span>].item()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>clf_extra_profit <span class="op">=</span> clf_incremental <span class="op">*</span> (<span class="dv">120000</span> <span class="op">/</span> <span class="dv">9000</span>) <span class="op">*</span> <span class="fl">14.99</span> <span class="op">-</span> <span class="dv">30000</span> <span class="op">*</span><span class="fl">1.5</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Extra profit: $</span><span class="sc">{</span>clf_extra_profit<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Extra profit: $45443.68</code></pre>
+</div>
+</div>
+<p>When comparing against the propensity-based targeting strategy, the uplift model delivers an estimated <strong>$13,457.75 higher incremental profit</strong> under the same budget assumptions.</p>
+<div id="f7b49907" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>clf_propensity_tab <span class="op">=</span> rsm.uplift_tab(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    pred_store.query(<span class="st">"training == 0"</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"converted"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yes"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"clf_pred_treatment"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ad"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    qnt <span class="op">=</span> <span class="dv">20</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>clf_propensity_tab</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>clf_propensity_incremental <span class="op">=</span> clf_propensity_tab[clf_propensity_tab[<span class="st">"cum_prop"</span>] <span class="op">==</span> perc][<span class="st">"incremental_resp"</span>].item()</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>clf_extra_profit_propensity <span class="op">=</span> (clf_incremental<span class="op">-</span>clf_propensity_incremental) <span class="op">*</span> (<span class="dv">120000</span> <span class="op">/</span> <span class="dv">9000</span>) <span class="op">*</span> <span class="fl">14.99</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Expect to earn </span><span class="sc">{</span>clf_extra_profit_propensity<span class="sc">:.2f}</span><span class="ss"> more by using an uplift model rather than a propensity model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Expect to earn 13457.75 more by using an uplift model rather than a propensity model</code></pre>
+</div>
+</div>
+<p>These results confirm that the uplift model provides a <strong>more effective and profitable targeting framework</strong>, ensuring that advertising resources focus on customers who are most likely to respond positively.</p>
+<hr>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h3>
+<ul>
+<li><strong>Uplift modeling</strong> captures <em>incremental</em> ad effects rather than overall likelihoods.<br>
+</li>
+<li><strong>Top deciles</strong> show the largest positive uplift; targeting beyond 40–50% becomes inefficient.<br>
+</li>
+<li><strong>Negative uplift</strong> in the lowest bins warns against indiscriminate ad exposure.<br>
+</li>
+<li>Compared to the propensity model, the uplift model increases both <strong>conversion efficiency</strong> and <strong>incremental profit</strong>.</li>
+</ul>
+<p>Overall, the logistic uplift model demonstrates clear practical value by maximizing ad ROI and avoiding unnecessary spending on non-responsive users. ## Model Evaluation and Comparison</p>
+</section>
+<section id="uplift-model-performance-1" class="level3">
+<h3 class="anchored" data-anchor-id="uplift-model-performance-1">Uplift Model Performance</h3>
+<p>The <strong>incremental uplift curve</strong> demonstrates that the logistic regression uplift model effectively distinguishes between customers who are positively influenced by advertising and those who are not.<br>
+The incremental gain peaks around the <strong>top 30–40%</strong> of the population, where the additional conversion rate is the highest.<br>
+Beyond this range, the curve begins to flatten, indicating diminishing marginal returns from additional targeting.</p>
+<p>The <strong>uplift distribution plot</strong> provides a complementary view: the highest deciles exhibit strong positive uplift, while the lowest segments show negative uplift values.<br>
+This implies that targeting low-scoring users could even reduce conversions—highlighting the importance of selective marketing.</p>
+<hr>
+</section>
+<section id="comparison-with-propensity-model-1" class="level3">
+<h3 class="anchored" data-anchor-id="comparison-with-propensity-model-1">Comparison with Propensity Model</h3>
+<p>When comparing the uplift and propensity-based approaches, the <strong>uplift model (<code>clf_uplift_score</code>)</strong> consistently outperforms the <strong>propensity model (<code>clf_pred_treatment</code>)</strong> across nearly all quantile bins.<br>
+As seen in the incremental uplift plot, the uplift curve lies <strong>above</strong> the propensity curve, achieving higher incremental gains for the same proportion of targeted customers.<br>
+This shows that the uplift model better identifies <strong>causally responsive segments</strong>, rather than simply those with high baseline purchase probabilities.</p>
+<p>The uplift bar chart further confirms this pattern: although both models capture high-value customers, the uplift model more effectively isolates the <strong>truly persuadable users</strong> who convert <em>because</em> of the ad.<br>
+This distinction is key for efficient campaign allocation.</p>
+<hr>
+</section>
+<section id="profitability-analysis-1" class="level3">
+<h3 class="anchored" data-anchor-id="profitability-analysis-1">Profitability Analysis</h3>
+<p>Based on the extrapolation to a total audience of <strong>120,000 customers</strong>, targeting the top <strong>25% (≈30,000 users)</strong> using the uplift model yields approximately <strong>$45,443</strong> in additional profit compared to no targeting.<br>
+When comparing against the propensity-based targeting strategy, the uplift model delivers an estimated <strong>$13,457.75 higher incremental profit</strong> under the same budget assumptions.</p>
+<p>These results confirm that the uplift model provides a <strong>more effective and profitable targeting framework</strong>, ensuring that advertising resources focus on customers who are most likely to respond positively.</p>
+<hr>
+</section>
+<section id="key-takeaways-1" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways-1">Key Takeaways</h3>
+<ul>
+<li><strong>Uplift modeling</strong> captures <em>incremental</em> ad effects rather than overall likelihoods.<br>
+</li>
+<li><strong>Top deciles</strong> show the largest positive uplift; targeting beyond 40–50% becomes inefficient.<br>
+</li>
+<li><strong>Negative uplift</strong> in the lowest bins warns against indiscriminate ad exposure.<br>
+</li>
+<li>Compared to the propensity model, the uplift model increases both <strong>conversion efficiency</strong> and <strong>incremental profit</strong>.</li>
+</ul>
+<p>Overall, the logistic uplift model demonstrates clear practical value by maximizing ad ROI and avoiding unnecessary spending on non-responsive users.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

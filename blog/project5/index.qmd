@@ -1,0 +1,325 @@
+---
+title: "Creative Gaming: Uplift Modeling"
+author: "Hanze Zou"
+date: today
+---
+
+
+## Case Overview – Creative Gaming: Uplift Modeling
+
+The Creative Gaming: Space Pirates case explores the marketing challenges faced by Creative Gaming, a mobile game company whose hit title, Space Pirates, achieved rapid early success. To maintain player engagement and drive revenue, the company launched a paid campaign expansion called Zalon, priced at $14.99. However, only 5.75% of active users purchased the campaign, raising concerns about pricing and marketing effectiveness. CMO Mi Haruki tasked the analytics team with developing a data-driven targeting strategy to increase campaign adoption without changing the price.
+
+Building on previous “propensity-to-buy” work, the new assignment focuses on **uplift modeling**—an approach that estimates the incremental impact of marketing interventions by distinguishing between users who buy because of an ad and those who would have purchased anyway. Using experimental data from 60,000 players—half exposed to ads (cg_ad_random) and half in the control group (cg_organic_control)—the objective is to predict which users show the highest causal uplift in conversion probability.
+
+The project involves training multiple machine learning models—logistic regression, neural networks, random forests, and XGBoost—to compare uplift performance with traditional propensity models. The analysis will also determine the optimal share of customers to target in order to maximize incremental profit, not just response rate.
+
+Ultimately, this case highlights how uplift modeling enables Creative Gaming to allocate marketing resources efficiently, improving ROI by focusing only on users whose behavior can be positively influenced by advertising.
+
+
+## Data
+### Description
+
+```{python}
+import pandas as pd
+import pyrsm as rsm
+
+rsm.md("cg_ad_treatment_description.md")
+
+
+```
+
+
+### Data Preprocessing for Uplift Modeling
+
+```{python}
+#| echo: false
+
+cg_organic_control = pd.read_parquet("cg_organic_control.parquet").reset_index(drop=True)
+cg_ad_treatment = pd.read_parquet("cg_ad_treatment.parquet").reset_index(drop=True)
+cg_ad_random = pd.read_parquet("cg_ad_random.parquet").reset_index(drop=True)
+```
+
+Before building the uplift model, several preprocessing steps were performed to construct a dataset suitable for causal inference.  
+The goal was to create a unified structure that allows direct comparison between users exposed to the advertisement (*treatment group*) and those who were not (*control group*).
+
+---
+
+#### 1. Labeling Treatment and Control Groups
+
+A binary variable `ad` was added to both datasets:
+
+```{python}
+# Add a variable “ad” to cg_ad_random and set its value to 1 for all rows
+cg_ad_random["ad"] = 1
+cg_ad_random.head()
+
+# Add a variable “ad” to cg_organic_control and set its value to 0 for all rows
+cg_organic_control["ad"] = 0
+cg_organic_control.head()
+```
+
+#### 2. Combining the Datasets
+
+Both groups were stacked vertically into one dataset:
+```{python}
+# Create a stacked dataset for the uplift analysis by combining cg_organic_control(Group 1) and cg_ad_random (Group 2). Use cg_rct_stacked as the name for the stacked dataset.
+cg_rct_stacked = pd.concat([cg_organic_control, cg_ad_random], axis=0).reset_index(drop=True)
+cg_rct_stacked.head()
+```
+This creates a single modeling framework where each observation contains:
+
+- the treatment indicator `ad`
+- the target variable `converted`
+- user-level telemetry features (e.g., game activity, purchases, messages, etc.)
+
+
+
+#### 3. Creating Training and Test Splits
+A new variable `training` was generated using stratified sampling by both `converted` and `ad`:
+
+```{python}
+# Create a training variable (70% training and 30% test). Use 1234 as the seed. Use “converted” and “ad” as the blocking variables, in that order.
+cg_rct_stacked["training"] = rsm.model.make_train(
+    data = cg_rct_stacked, 
+    test_size = 0.3, 
+    strat_var=["converted", "ad"], 
+    random_state=1234
+)
+cg_rct_stacked.head()
+```
+Stratification ensures that treatment/control and conversion distributions remain balanced between training and test sets, preventing sampling bias.
+
+#### 4. Validating Stratification
+A cross-tabulation confirmed that conversion rates were balanced between the training and test sets within both groups:
+
+```{python}
+
+# Check if the probability of yes/no is similar across the training and test sets for ad ==0 and ad == 1.
+pd.crosstab(cg_rct_stacked.converted, [cg_rct_stacked.ad, cg_rct_stacked.training],normalize="columns").round(2)
+
+```
+
+
+
+## Logistic Regression Uplift Model
+
+To estimate the causal effect of advertising on conversion, two **logistic regression models** were trained separately for the treatment group (`ad = 1`) and the control group (`ad = 0`).  
+Both models used the same set of explanatory variables derived from in-game telemetry data.  
+Variables unrelated to player behavior or statistically insignificant in preliminary tests (e.g., `TimesKilled`, `NumFriendRequestIgnored`, `DaysUser`, `AcquiredIonWeapon`) were excluded to reduce noise and potential multicollinearity.
+
+```{python}
+#| echo: false
+evar = cg_rct_stacked.columns.tolist()
+evar = [e for e in evar if e not in ("training", "converted","ad")]
+evar
+
+```
+```{python}
+# remove insignificant variables
+for col in ["TimesKilled", "TimesNavigator","NumInGameMessagesSent","NumFriendRequestIgnored","DaysUser","AcquiredIonWeapon","PurchasedCoinPackSmall","UserConsole"]:
+    if col in evar:
+        evar.remove(col)
+
+evar
+```
+
+**Treatment Model** :
+
+```{python}
+clf_treatment = rsm.model.logistic(
+    data = cg_rct_stacked.query("training == 1 & ad == 1"), 
+    rvar = "converted",
+    lev="yes",
+    evar = evar, 
+)
+clf_treatment.summary()
+
+```
+
+**Control Model** :
+```{python}
+clf_control = rsm.model.logistic(
+    data = cg_rct_stacked.query("training == 1 & ad == 0"), 
+    rvar = "converted",
+    lev="yes",
+    evar = evar, 
+)
+clf_control.summary()
+```
+
+The treatment model achieved a **McFadden pseudo-R²** of approximately **0.096** with an **AUC** of **0.71**, while the control model performed slightly better (pseudo-R² ≈ **0.19**, AUC ≈ **0.82**).  
+For both models, features such as `GameLevel`, `NumGameDays`, `NumSpaceHeroBadges`, and `NumAdsClicked` showed strong positive effects on the probability of purchasing the *Zalon* campaign.  
+These results indicate that **highly engaged players**—those with frequent gameplay and in-app activity—are more likely to convert regardless of ad exposure.
+
+Predicted probabilities from both regressions were combined to compute an **uplift score**, defined as:
+
+\[
+\text{Uplift}_i = \hat{P}(Y=1 \mid ad=1, X_i) - \hat{P}(Y=1 \mid ad=0, X_i)
+\]
+
+This value represents the incremental likelihood of purchase attributable to advertising.
+
+```{python}
+pred_store = cg_rct_stacked.copy()
+pred_store["clf_pred_treatment"] = clf_treatment.predict(cg_rct_stacked)['prediction']
+pred_store["clf_pred_control"] = clf_control.predict(cg_rct_stacked)['prediction']
+pred_store["clf_uplift_score"] = pred_store.clf_pred_treatment - pred_store.clf_pred_control
+```
+
+
+
+Using the `uplift_tab` function with 20 quantile bins, the resulting **uplift table** and **incremental uplift plot** demonstrated that the model effectively distinguishes between segments positively influenced by ads and those with neutral or negative responses.  
+The top-scored deciles produced substantial incremental response gains, confirming that logistic regression provides a **meaningful baseline** for uplift-based targeting before testing more complex models such as Random Forest or XGBoost.
+```{python}
+clf_tab = rsm.uplift_tab(pred_store.query("training == 0"), "converted", "yes", "clf_uplift_score", "ad", 1, qnt = 20)
+clf_tab
+```
+
+
+
+## Model Evaluation and Comparison
+
+### Uplift Model Performance
+
+The **incremental uplift curve** demonstrates that the logistic regression uplift model effectively distinguishes between customers who are positively influenced by advertising and those who are not.  
+The incremental gain peaks around the **top 30–40%** of the population, where the additional conversion rate is the highest.  
+Beyond this range, the curve begins to flatten, indicating diminishing marginal returns from additional targeting.
+
+```{python}
+#| echo: false
+clf_fig_inc = rsm.inc_uplift_plot(pred_store.query("training == 0"), "converted", "yes", "clf_uplift_score", "ad", 1, qnt = 20)
+```
+
+
+
+
+The **uplift distribution plot** provides a complementary view: the highest deciles exhibit strong positive uplift, while the lowest segments show negative uplift values.  
+This implies that targeting low-scoring users could even reduce conversions—highlighting the importance of selective marketing.
+
+```{python}
+#| echo: false
+clf_flg = rsm.uplift_plot(pred_store.query("training == 0"), "converted", "yes", "clf_uplift_score", "ad", 1, qnt = 20)
+```
+
+---
+
+### Comparison with Propensity Model
+
+When comparing the uplift and propensity-based approaches, the **uplift model (`clf_uplift_score`)** consistently outperforms the **propensity model (`clf_pred_treatment`)** across nearly all quantile bins.  
+As seen in the incremental uplift plot, the uplift curve lies **above** the propensity curve, achieving higher incremental gains for the same proportion of targeted customers.  
+
+```{python}
+#| echo: false
+clf_fig_propensity_1 = rsm.inc_uplift_plot(
+    pred_store.query("training == 0"),
+    "converted",
+    "yes",
+    ["clf_pred_treatment","clf_uplift_score"],
+    "ad",
+    1,
+    qnt = 20,
+)
+```
+
+This shows that the uplift model better identifies **causally responsive segments**, rather than simply those with high baseline purchase probabilities.
+
+The uplift bar chart further confirms this pattern: although both models capture high-value customers, the uplift model more effectively isolates the **truly persuadable users** who convert *because* of the ad.  
+This distinction is key for efficient campaign allocation.
+```{python}
+#| echo: false
+clf_fig_propensity_2 = rsm.uplift_plot(
+    pred_store.query("training == 0"),
+    "converted",
+    "yes",
+    ["clf_pred_treatment", "clf_uplift_score"],
+    "ad",
+    1,
+    qnt = 20,
+)
+```
+
+
+---
+
+### Profitability Analysis
+
+Based on the extrapolation to a total audience of **120,000 customers**, targeting the top **25% (≈30,000 users)** using the uplift model yields approximately **$45,443** in additional profit compared to no targeting.  
+
+```{python}
+perc = 30000 / 120000
+clf_incremental = clf_tab[clf_tab["cum_prop"] == perc]["incremental_resp"].item()
+clf_extra_profit = clf_incremental * (120000 / 9000) * 14.99 - 30000 *1.5
+print(f"Extra profit: ${clf_extra_profit:.2f}")
+```
+When comparing against the propensity-based targeting strategy, the uplift model delivers an estimated **$13,457.75 higher incremental profit** under the same budget assumptions.
+```{python}
+clf_propensity_tab = rsm.uplift_tab(
+    pred_store.query("training == 0"),
+    "converted",
+    "yes",
+    "clf_pred_treatment",
+    "ad",
+    1,
+    qnt = 20,
+)
+clf_propensity_tab
+
+clf_propensity_incremental = clf_propensity_tab[clf_propensity_tab["cum_prop"] == perc]["incremental_resp"].item()
+clf_extra_profit_propensity = (clf_incremental-clf_propensity_incremental) * (120000 / 9000) * 14.99
+
+print(f"Expect to earn {clf_extra_profit_propensity:.2f} more by using an uplift model rather than a propensity model")
+
+```
+
+
+These results confirm that the uplift model provides a **more effective and profitable targeting framework**, ensuring that advertising resources focus on customers who are most likely to respond positively.
+
+---
+
+### Key Takeaways
+- **Uplift modeling** captures *incremental* ad effects rather than overall likelihoods.  
+- **Top deciles** show the largest positive uplift; targeting beyond 40–50% becomes inefficient.  
+- **Negative uplift** in the lowest bins warns against indiscriminate ad exposure.  
+- Compared to the propensity model, the uplift model increases both **conversion efficiency** and **incremental profit**.
+
+Overall, the logistic uplift model demonstrates clear practical value by maximizing ad ROI and avoiding unnecessary spending on non-responsive users.
+## Model Evaluation and Comparison
+
+### Uplift Model Performance
+
+The **incremental uplift curve** demonstrates that the logistic regression uplift model effectively distinguishes between customers who are positively influenced by advertising and those who are not.  
+The incremental gain peaks around the **top 30–40%** of the population, where the additional conversion rate is the highest.  
+Beyond this range, the curve begins to flatten, indicating diminishing marginal returns from additional targeting.
+
+The **uplift distribution plot** provides a complementary view: the highest deciles exhibit strong positive uplift, while the lowest segments show negative uplift values.  
+This implies that targeting low-scoring users could even reduce conversions—highlighting the importance of selective marketing.
+
+---
+
+### Comparison with Propensity Model
+
+When comparing the uplift and propensity-based approaches, the **uplift model (`clf_uplift_score`)** consistently outperforms the **propensity model (`clf_pred_treatment`)** across nearly all quantile bins.  
+As seen in the incremental uplift plot, the uplift curve lies **above** the propensity curve, achieving higher incremental gains for the same proportion of targeted customers.  
+This shows that the uplift model better identifies **causally responsive segments**, rather than simply those with high baseline purchase probabilities.
+
+The uplift bar chart further confirms this pattern: although both models capture high-value customers, the uplift model more effectively isolates the **truly persuadable users** who convert *because* of the ad.  
+This distinction is key for efficient campaign allocation.
+
+---
+
+### Profitability Analysis
+
+Based on the extrapolation to a total audience of **120,000 customers**, targeting the top **25% (≈30,000 users)** using the uplift model yields approximately **$45,443** in additional profit compared to no targeting.  
+When comparing against the propensity-based targeting strategy, the uplift model delivers an estimated **$13,457.75 higher incremental profit** under the same budget assumptions.
+
+These results confirm that the uplift model provides a **more effective and profitable targeting framework**, ensuring that advertising resources focus on customers who are most likely to respond positively.
+
+---
+
+### Key Takeaways
+- **Uplift modeling** captures *incremental* ad effects rather than overall likelihoods.  
+- **Top deciles** show the largest positive uplift; targeting beyond 40–50% becomes inefficient.  
+- **Negative uplift** in the lowest bins warns against indiscriminate ad exposure.  
+- Compared to the propensity model, the uplift model increases both **conversion efficiency** and **incremental profit**.
+
+Overall, the logistic uplift model demonstrates clear practical value by maximizing ad ROI and avoiding unnecessary spending on non-responsive users.
